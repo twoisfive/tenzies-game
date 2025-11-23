@@ -7,13 +7,25 @@ import './App.css'
 export default function App() {
     const [dice, setDice] = useState(() => generateAllNewDice())
     const buttonRef = useRef(null)
+    const rickRoll = useRef(new Audio("/rick_astley.mp3"))
 
     const gameWon = dice.every(die => die.isHeld) &&
         dice.every(die => die.value === dice[0].value)
+
+    const playRick = () => {
+      rickRoll.current.currentTime = 0;
+      rickRoll.current.play();
+    }
+
+    const stopRick = () => {
+      rickRoll.current.pause();
+      rickRoll.current.currentTime = 0;
+    }
         
     useEffect(() => {
         if (gameWon) {
             buttonRef.current.focus()
+            playRick()
         }
     }, [gameWon])
 
@@ -36,6 +48,7 @@ export default function App() {
             ))
         } else {
             setDice(generateAllNewDice())
+            stopRick()
         }
     }
 

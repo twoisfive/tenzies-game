@@ -25,6 +25,8 @@ main {
     font-weight: 400;
     margin-top: 0;
     text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .dice-container {
